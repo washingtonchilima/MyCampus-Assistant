@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:text="@string/my_profile"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="Name"
+        android:hint="@string/name"
+        android:minHeight="48dp"
+        tools:ignore="TextFields,VisualLintTextFieldSize" />
+
+    <EditText
+        android:id="@+id/editTextId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/student_id"
+        android:minHeight="48dp"
+        tools:ignore="Autofill,TextFields,VisualLintTextFieldSize" />
+
+    <EditText
+        android:id="@+id/editTextCourse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:hint="@string/course"
+        android:inputType="TODO"
+        android:minHeight="48dp"
+        tools:ignore="TextFields,VisualLintTextFieldSize" />
+
+    <LinearLayout
+        style="?android:attr/buttonBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:gravity="end">
+
+        <Button
+            android:id="@+id/btnEdit"
+            style="?android:attr/buttonBarButtonStyle"
+            android:text="@string/edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="ButtonStyle" />
+
+        <Button
+            android:id="@+id/btnSave"
+            style="?android:attr/buttonBarButtonStyle"
+            android:text="@string/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
+</LinearLayout>
