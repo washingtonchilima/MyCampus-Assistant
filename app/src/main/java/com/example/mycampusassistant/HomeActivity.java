@@ -49,9 +49,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private void setupButtonListeners() {
         mBtnClassSchedule.setOnClickListener(v -> {
-            // TODO: Uncomment when ClassScheduleActivity is ready
-            // navigateTo(ClassScheduleActivity.class);
-            Toast.makeText(this, "Class Schedule feature coming soon!", Toast.LENGTH_SHORT).show();
+            navigateTo(ClassScheduleActivity.class);
         });
 
         mBtnAssignmentsExams.setOnClickListener(v -> {
