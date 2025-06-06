@@ -1,9 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MyCampus-Assistant</string>
-    <string name="my_profile">My Profile</string>
-    <string name="name">Name</string>
-    <string name="student_id">Student ID</string>
-    <string name="course">Course</string>
-    <string name="edit">Edit</string>
-    <string name="save">Save</string>
+    <string name="app_name" />
+    <string name="name" />
+    <string name="my_profile" />
+    <string name="student_id" />
+    <string name="course">\n</string>
+    <string name="edit" />
+    <string name="save" />
+    <string name="home" />
+    <string name="schedule" />
+    <string name="assignments">\n</string>
+    <string name="map" />
+    <string name="profile" />
 </resources>

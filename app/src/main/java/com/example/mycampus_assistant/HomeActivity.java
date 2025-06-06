@@ -2,7 +2,6 @@ package com.example.mycampus_assistant;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,13 +11,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 public class HomeActivity extends AppCompatActivity {
 
     private TextView mUserInfo;
-    private Button mBtnClassSchedule;
-    private Button mBtnAssignmentsExams;
-    private Button mBtnCampusMap;
-    private Button mBtnProfileSettings;
+    private BottomNavigationView bottomNavigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,31 +24,18 @@ public class HomeActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home);
 
-        // Apply system bar padding (status/nav bars)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.home_root), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        initializeViews();
-        setupUserInfo();
-        setupButtonListeners();
-    }
+        mUserInfo = findViewById(R.id.userInfo);
+        bottomNavigation = findViewById(R.id.bottom_navigation);
 
-    private void initializeViews() {
-        try {
-            // UI Components
-            findViewById(R.id.welcomeText);
-            mUserInfo = findViewById(R.id.userInfo);
-            mBtnClassSchedule = findViewById(R.id.btnClassSchedule);
-            mBtnAssignmentsExams = findViewById(R.id.btnAssignmentsExams);
-            mBtnCampusMap = findViewById(R.id.btnCampusMap);
-            mBtnProfileSettings = findViewById(R.id.btnProfileSettings);
-        } catch (Exception e) {
-            e.printStackTrace();
-            showErrorAndFinish();
-        }
+        setupUserInfo();
+        setupBottomNavListener(); // Renamed for clarity
+        bottomNavigation.setSelectedItemId(R.id.nav_home);
     }
 
     private void setupUserInfo() {
@@ -59,45 +44,39 @@ public class HomeActivity extends AppCompatActivity {
         mUserInfo.setText(String.format("Name: %s\nID: %s", userName, userId));
     }
 
-    private void setupButtonListeners() {
-        mBtnClassSchedule.setOnClickListener(v -> {
-            // navigateTo(ClassScheduleActivity.class);
-            Toast.makeText(this, "Class Schedule feature coming soon!", Toast.LENGTH_SHORT).show();
-        });
+    private void setupBottomNavListener() {
+        bottomNavigation.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.nav_home) return true;
 
-        mBtnAssignmentsExams.setOnClickListener(v -> {
-            // navigateTo(AssignmentsExamsActivity.class);
-            Toast.makeText(this, "Assignments & Exams feature coming soon!", Toast.LENGTH_SHORT).show();
-        });
+            Class<?> targetActivity = null;
+            if (itemId == R.id.nav_schedule) {
+                targetActivity = ClassScheduleActivity.class;
+            } else if (itemId == R.id.nav_assignments) {
+                targetActivity = AssignmentsExamsActivity.class;
+            } else if (itemId == R.id.nav_map) {
+                targetActivity = CampusMapActivity.class;
+            } else if (itemId == R.id.nav_profile) {
+                targetActivity = ProfileSettingsActivity.class;
+            }
 
-        mBtnCampusMap.setOnClickListener(v -> {
-            // navigateTo(CampusMapActivity.class);
-            Toast.makeText(this, "Campus Map feature coming soon!", Toast.LENGTH_SHORT).show();
-        });
+            if (targetActivity != null) {
+                navigateTo(targetActivity);
+                return true;
+            }
 
-        mBtnProfileSettings.setOnClickListener(v -> {
-            // navigateTo(ProfileSettingsActivity.class);
-            Toast.makeText(this, "Profile Settings feature coming soon!", Toast.LENGTH_SHORT).show();
+            return false;
         });
     }
 
     private void navigateTo(Class<?> destinationActivity) {
         try {
-            Intent intent = new Intent(HomeActivity.this, destinationActivity);
+            Intent intent = new Intent(this, destinationActivity);
             startActivity(intent);
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         } catch (Exception e) {
             e.printStackTrace();
-            showErrorToast();
+            Toast.makeText(this, "An error occurred. Please try again.", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    private void showErrorToast() {
-        Toast.makeText(this, "An error occurred. Please try again.", Toast.LENGTH_SHORT).show();
-    }
-
-    private void showErrorAndFinish() {
-        Toast.makeText(this, "A critical error occurred. The app will close.", Toast.LENGTH_LONG).show();
-        finish();
     }
 }
