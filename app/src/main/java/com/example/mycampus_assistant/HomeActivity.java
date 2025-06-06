@@ -50,11 +50,7 @@ public class HomeActivity extends AppCompatActivity {
             if (itemId == R.id.nav_home) return true;
 
             Class<?> targetActivity = null;
-            if (itemId == R.id.nav_schedule) {
-                targetActivity = ClassScheduleActivity.class;
-            } else if (itemId == R.id.nav_assignments) {
-                targetActivity = AssignmentsExamsActivity.class;
-            } else if (itemId == R.id.nav_map) {
+            if (itemId == R.id.nav_map) {
                 targetActivity = CampusMapActivity.class;
             } else if (itemId == R.id.nav_profile) {
                 targetActivity = ProfileSettingsActivity.class;

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="tvTime" type="id" />
+    <item name="tvDay" type="id" />
+    <item name="tvSubject" type="id" />
+    <item name="recyclerViewSchedule" type="id" />
+    <item name="textTitle" type="id" />
+    <item name="textDueDate" type="id" />
+    <item name="iconAlert" type="id" />
+    <item name="headerText" type="id" />
+</resources>
