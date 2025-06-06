@@ -1,16 +1,19 @@
-package com.example.mycampusassistant;
+package com.example.mycampus_assistant;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 public class HomeActivity extends AppCompatActivity {
 
-    // UI Components
-    private TextView mWelcomeText;
     private TextView mUserInfo;
     private Button mBtnClassSchedule;
     private Button mBtnAssignmentsExams;
@@ -20,7 +23,15 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home);
+
+        // Apply system bar padding (status/nav bars)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.home_root), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
 
         initializeViews();
         setupUserInfo();
@@ -29,7 +40,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private void initializeViews() {
         try {
-            mWelcomeText = findViewById(R.id.welcomeText);
+            // UI Components
+            findViewById(R.id.welcomeText);
             mUserInfo = findViewById(R.id.userInfo);
             mBtnClassSchedule = findViewById(R.id.btnClassSchedule);
             mBtnAssignmentsExams = findViewById(R.id.btnAssignmentsExams);
@@ -49,25 +61,21 @@ public class HomeActivity extends AppCompatActivity {
 
     private void setupButtonListeners() {
         mBtnClassSchedule.setOnClickListener(v -> {
-            // TODO: Uncomment when ClassScheduleActivity is ready
             // navigateTo(ClassScheduleActivity.class);
             Toast.makeText(this, "Class Schedule feature coming soon!", Toast.LENGTH_SHORT).show();
         });
 
         mBtnAssignmentsExams.setOnClickListener(v -> {
-            // TODO: Uncomment when AssignmentsExamsActivity is ready
             // navigateTo(AssignmentsExamsActivity.class);
             Toast.makeText(this, "Assignments & Exams feature coming soon!", Toast.LENGTH_SHORT).show();
         });
 
         mBtnCampusMap.setOnClickListener(v -> {
-            // TODO: Uncomment when CampusMapActivity is ready
             // navigateTo(CampusMapActivity.class);
             Toast.makeText(this, "Campus Map feature coming soon!", Toast.LENGTH_SHORT).show();
         });
 
         mBtnProfileSettings.setOnClickListener(v -> {
-            // TODO: Uncomment when ProfileSettingsActivity is ready
             // navigateTo(ProfileSettingsActivity.class);
             Toast.makeText(this, "Profile Settings feature coming soon!", Toast.LENGTH_SHORT).show();
         });
