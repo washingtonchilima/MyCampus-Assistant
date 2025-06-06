@@ -41,6 +41,8 @@ public class CampusMapActivity extends AppCompatActivity {
             Class<?> targetActivity = null;
             if (itemId == R.id.nav_home) {
                 targetActivity = HomeActivity.class;
+            } else if (itemId == R.id.nav_schedule) {
+                targetActivity = ClassScheduleActivity.class;
 
             } else if (itemId == R.id.nav_profile) {
                 targetActivity = ProfileSettingsActivity.class;
