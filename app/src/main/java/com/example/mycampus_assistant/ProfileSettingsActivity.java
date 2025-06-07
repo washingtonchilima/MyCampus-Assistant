@@ -90,7 +90,8 @@ public class ProfileSettingsActivity extends AppCompatActivity {
                 targetActivity = HomeActivity.class;
             } else if (itemId == R.id.nav_schedule) {
                 targetActivity = ClassScheduleActivity.class;
-
+            } else if (itemId == R.id.nav_assignments) {
+                targetActivity = AssignmentsExamsActivity.class;
             } else if (itemId == R.id.nav_map) {
                 targetActivity = CampusMapActivity.class;
             }
